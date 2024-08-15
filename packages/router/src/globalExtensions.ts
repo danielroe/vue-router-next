@@ -12,7 +12,7 @@ import type { TypesConfig } from './config'
  * NOTE: this used to be `@vue/runtime-core` but it should have been `vue` for a long time. Using both declaration at
  * the same time breaks so using only one everywhere is the preferred way.
  */
-declare module 'vue' {
+declare module '@vue/runtime-core' {
   export interface ComponentCustomOptions {
     /**
      * Guard called when the router is navigating to the route that is rendering
@@ -70,7 +70,9 @@ declare module 'vue' {
      */
     $router: TypesConfig extends Record<'$router', infer T> ? T : Router
   }
+}
 
+declare module 'vue' {
   export interface GlobalComponents {
     RouterView: TypesConfig extends Record<'RouterView', infer T>
       ? T
